@@ -1,0 +1,21 @@
+name: C++ Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y build-essential
+
+    - name: Compile main.cpp
+      run: g++ -o spinning_cube main.cpp -std=c++17
+
+    - name: Verify executable
+      run: |
+        ls -l spinning_cube
+        file spinning_cube
